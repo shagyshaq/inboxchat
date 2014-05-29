@@ -4,66 +4,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends BaseController {
-
-    public function listUsers() {
-        if (Auth::check()) {
-            $users = new User();
-            $usersData = $users->all()->where();
-            return View::make('listusers', array('users' => $usersData));
-        } else {
-            return Redirect::to('users/login')
-                            ->with('messageLogin', 'You need to log in first!');
-        }
-    }
-
-    public function deactivateUser($id) {
-        if (Auth::check()) {
-            $user = User::find($id);
-            $user->active = '0';
-            $user->save();
-
-            return Redirect::to('users/listusers')->with('message', 'Your user is deactivated!');
-        } else {
-            return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
-        }
-    }
-
-    public function activateUser($id) {
-        if (Auth::check()) {
-            $user = User::find($id);
-            $user->active = '1';
-            $user->save();
-
-            return Redirect::to('users/listusers')->with('message', 'Your user is activated!');
-        } else {
-            return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
-        }
-    }
-
-    
-    
-    public function editUser($id) {
-        if (Auth::check()) {
-            $user = new User();
-            $userData = $user->find($id);
-
-            return View::make('edituser', array('user' => $userData));
-        } else {
-            return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
-        }
-    }
-
-    public function deleteUser($id) {
-        if (Auth::check()) {
-            User::destroy($id);
-            return Redirect::to('users/listusers')->with('message', 'Your user is deleted!');
-        } else {
-            return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
-        }
-    }
+  
 
     public function updateOrCreateUser() {
-      //  if (Auth::check()) {
+      
             if (Input::get('id')) {
                 $user = array(
                     'username' => Input::get('username'),
@@ -92,16 +36,7 @@ class UsersController extends BaseController {
                     'birthday' => Input::get('birthday')
                 );
                 
-                /*$confirmPassword = Input::get('confirmPassword');
-                if($confirmPassword != $user['password']) {                    
-                    $user_object = new User;
-                    $user_object->birthday = Input::get('birthday');
-                    $user_object->username = $user['username'];
-                    $user_object->email = $user['email'];
-                    return Redirect::back()->with(array('user' => $user_object));
-                //return View::make('edituser', array('user' => $user_object, 'validate_messages' => $message));
-                }*/
-                
+                               
                 $message = $this->validateUser($user, 'create');
                 
                 if ($message === null) {
@@ -120,11 +55,8 @@ class UsersController extends BaseController {
                 $user_object->email = $user['email'];
                 $user_object->birtday = $user['birthday'];
                 return Redirect::back()->with(array('user' => $user_object, 'validate_messages' => $message));
-                //return View::make('edituser', array('user' => $user_object, 'validate_messages' => $message));
+                
             }
-       /* } else {
-            return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
-        }*/
     }
 
     
@@ -150,8 +82,6 @@ class UsersController extends BaseController {
                         'password_confirmation' =>'Required|min:8',
                         'email' => 'required|email|unique:users',
                         'birthday' => array('required', 'date_format:m/d/Y', 'regex:/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/')
-                                
-                                //'date_format:d/m/y'
                             )
             );
         } elseif ($type == 'update') {
@@ -190,10 +120,24 @@ class UsersController extends BaseController {
         return View::make('login');
     }
     
+     public function profileUser() {
+         if (Auth::check()) {
+             $profileDetails = array(
+                        'username' => Auth::user()->username,
+                        'email' => Auth::user()->email,
+                        'birthday' => Auth::user()->birthday,               
+             );
+             
+            return View::make('userProfile')->with(array('userProfile' => $profileDetails));
+            
+        } else {
+            return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
+        }
+     }
+    
     public function createUser() {
         if (Auth::check()) {
-            return View::make('edituser');
-            //return View::make('createuser');
+            return View::make('edituser');            
         } else {
             return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
         }

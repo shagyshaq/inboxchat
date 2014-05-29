@@ -6,7 +6,7 @@ class MessagesController extends BaseController {
     {
         if(Auth::check()){
                 $info = $this->countMessages();
-                var_dump($info);    
+                
 	        return View::make('dashboard',array('info' => $info));
         } else {
         	return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
@@ -16,7 +16,7 @@ class MessagesController extends BaseController {
     public function formCreateMessage()
     {
         if(Auth::check()){	        
-	        return View::make('message'); //,array('pages' => $postData, 'messages' => $messages));
+	        return View::make('message'); 
         } else {
         	return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
         }    
@@ -31,8 +31,7 @@ class MessagesController extends BaseController {
         foreach ($messages->all() as $message) {
             $messagesString[]=$message;
         }
-        var_dump(Input::get('toemail'));
-        
+                
         try{          
             if($v->passes()) {
             	$user = User::where('email', '=', Input::get('toemail'))->first();
@@ -45,15 +44,10 @@ class MessagesController extends BaseController {
             			$db_image = $this->uploadImage($file);
             		}        		
             	}     
-            	
-                //$date_created = new \DateTime;
-                //var_dump($date_created);
+            	                
                 $date_created = new DateTime();
                 $date_insert = $date_created->format('Y-m-d H:i:s');
-                //echo "nnnnnnnnnnnnnnnnnnnnnnn  ";
-                //echo $dt->format('Y-m-d H:i:s');echo "nnnnnnnnnnnnnnnnnnnnnnn  ";
-                var_dump($date_insert);
-                //die();
+                
             	if(isset($db_image)) { 
             		$dataForDB = array('image' => $db_image, 
                                            'subject' => Input::get('subject'),
@@ -74,8 +68,7 @@ class MessagesController extends BaseController {
                                         );
                      
                 }           	
-            	var_dump($dataForDB);
-                
+            	
             	Message::create($dataForDB);            	 
             	return Redirect::to('messages/inbox')->with('message', 'Your message has been sent!');            
             } else {     
@@ -211,17 +204,12 @@ class MessagesController extends BaseController {
     }
     
     public function listMessageSent()
-    {       
-       var_dump(Auth::user()->id);
+    {              
        if (Auth::check()) {
             $usersSentMessages = Message::join('users','users.id','=','messages.receiver_id')
                                     ->where('sender_id', '=', Auth::user()->id)
                                     ->orderBy('messages.id_message','DESC')
-                                    ->get();
-                                    //->toArray();
-            foreach ($usersSentMessages as $mesaj){
-                 var_dump($mesaj->read);                
-            }             
+                                    ->get();                                    
             
             return View::make('sentmessages', array('messagessent' => $usersSentMessages));
         } else {
@@ -258,10 +246,7 @@ class MessagesController extends BaseController {
         $allInbox = Message::where('receiver_id', '=', Auth::user()->id)->count();
         $allSent = Message::where('sender_id', '=', Auth::user()->id)->count();
         echo "inbox";
-        var_dump($allInbox);echo "sent";
-        var_dump($allSent);echo "unread";
-        var_dump($allUnread);echo "userid";
-        var_dump(Auth::user()->id);
+       
         $countAll = array('inbox' => $allInbox, 
                           'sent' => $allSent,
                           'unread' => $allUnread
@@ -269,25 +254,6 @@ class MessagesController extends BaseController {
         return $countAll;        
     }
    
-    public function uploadImage($file)//$file, $set = null)//$image)
-    {   	 
-          $destinationPath    = public_path() . '/img/images/'; // The destination were you store the image.   	 
-          $filename           = str_random(6) . '_' . $file->getClientOriginalName(); // Original file name that the end user used for it.
-          $mime_type          = $file->getMimeType(); // Gets this example image/png
-          $extension          = $file->getClientOriginalExtension(); // The original extension that the user used example .jpg or .png.   	
-          $upload_success     = $file->move($destinationPath, $filename); // Now we move the file to its new home.
-          return $filename;
-    }
-
-    public function deleteImage($filename)
-    {
-                 try {
-                         File::delete(public_path() . '/img/images/' . $filename);
-                         return true;
-                 } catch (Exception $e) {
-                         return false;
-                 }     
-    }
-   
+      
 
 }

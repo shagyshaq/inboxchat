@@ -36,14 +36,10 @@ Route::any('users/signin', 'UsersController@postSignIn');
 Route::any('users/dashboard', 'UsersController@getDashboard');
 
 Route::any('users/register', 'UsersController@registerUser');
+Route::any('users/profile', 'UsersController@profileUser');
 
-Route::any('users/listusers', 'UsersController@listUsers');
-Route::any('users/edituser/{id}', 'UsersController@editUser');
-Route::any('users/edit', 'UsersController@updateOrCreateUser');
-Route::any('users/delete/{id}', 'UsersController@deleteUser');
-Route::any('users/create', 'UsersController@createUser');
-Route::any('users/deactivateuser/{id}', 'UsersController@deactivateUser');
-Route::any('users/activateuser/{id}', 'UsersController@activateUser');
+
+
 
 
 

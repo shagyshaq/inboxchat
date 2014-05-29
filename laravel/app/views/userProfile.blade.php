@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="resize"align="center">
-        <h1 class="signin-h1"> Dashboard </h1>
+        <h1 class="signin-h1"> Profile Details </h1>
         
 
     <?php if (!empty($errorLogin)) { ?> 
@@ -15,28 +15,26 @@
     <?php } ?>
 
         </div>
-
-
-
+        
     <div class = 'form-signin form-validate'>
-                
-        <h4> You have {{$info['unread']}} new messages in your INBOX </h4>
+              
          <div class="form-group">
-            <label>Unread</label>
-            <div>{{$info['unread']}} </div>
+            <label> Username: </label>
+            <div>{{$userProfile['username']}} </div>
         </div>  
         
         <div class="form-group">
-            <label>Inbox</label>
-            <div>{{$info['inbox']}} </div>
+            <label> Email: </label>
+            <div>{{$userProfile['email']}} </div>
         </div>
         
         <div class="form-group">
-            <label>Sent</label>
-            <div>{{$info['sent']}} </div>
+            <label> Birthday: </label>
+            <div>{{$userProfile['birthday']}} </div>
         </div>             
         
     </div>
+        
 </div>
     
 
