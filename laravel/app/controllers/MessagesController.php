@@ -6,6 +6,7 @@ class MessagesController extends BaseController {
     {
         if(Auth::check()){
                 $info = $this->countMessages();
+                var_dump($info);    
 	        return View::make('dashboard',array('info' => $info));
         } else {
         	return Redirect::to('users/login')->with('messageLogin', 'You need to log in first!');
@@ -45,13 +46,19 @@ class MessagesController extends BaseController {
             		}        		
             	}     
             	
-                $date_created = new \DateTime;
-                var_dump($date_created);
+                //$date_created = new \DateTime;
+                //var_dump($date_created);
+                $date_created = new DateTime();
+                $date_insert = $date_created->format('Y-m-d H:i:s');
+                //echo "nnnnnnnnnnnnnnnnnnnnnnn  ";
+                //echo $dt->format('Y-m-d H:i:s');echo "nnnnnnnnnnnnnnnnnnnnnnn  ";
+                var_dump($date_insert);
+                //die();
             	if(isset($db_image)) { 
             		$dataForDB = array('image' => $db_image, 
                                            'subject' => Input::get('subject'),
                                            'content' => Input::get('contentmessage'),
-                                           'created_at' => $date_created,
+                                           'created_at' => $date_insert,
                                            'receiver_id' => $user->id,
                                            'sender_id' => Auth::user()->id,
                                            'read' => 1 
@@ -60,7 +67,7 @@ class MessagesController extends BaseController {
                     $dataForDB = array(    'subject' => Input::get('subject'),
                                            'content' => Input::get('contentmessage'),
                                            'read' => 1,
-                                           'created_at' => $date_created->date,
+                                           'created_at' => $date_insert,
                                            'receiver_id' => $user->id,
                                            'sender_id' => Auth::user()->id
                                             
@@ -219,7 +226,7 @@ class MessagesController extends BaseController {
             return View::make('sentmessages', array('messagessent' => $usersSentMessages));
         } else {
             return Redirect::to('users/login')
-                            ->with('messageLogin', 'You need to log in first!');
+                            ->with(array('messageLogin' => 'You need to log in first!'));
         }
     }
     

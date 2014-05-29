@@ -133,7 +133,7 @@ class UsersController extends BaseController {
         $credentials = array('username' => Input::get('username'), 'password' => Input::get('password'));
 
         if (Auth::attempt($credentials)) {
-            return Redirect::to('users/dashboard')->with('message', 'You are now logged in!');
+            return Redirect::to('messages/count')->with('message', 'You are now logged in!');
         } else {
             return Redirect::to('users/login')
                             ->with('message', 'Your username/password combination was incorrect')

@@ -20,8 +20,7 @@
     padding-bottom: 37px;
 }
 .footer {
-
-    
+   
 position:fixed;
 display:block;
 bottom:0;
@@ -219,4 +218,34 @@ padding:15px 10px 15px 50px;
 background-repeat: no-repeat;
 background-position: 10px center;
 
+}
+
+/*Ceva nou  */ 
+#footer {
+    width: 100%;
+    background: #181818 url(../img/footer-bg.png) repeat-x 0 0;
+}
+
+#footer { padding: 40px 0; }
+ 
+#footer h3 { margin: 10px 0; }
+ 
+#footer p { padding: 10px 0; }
+
+#footer h3 {
+    font-family: Verdana, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    color: #5293c2;
+}
+ 
+/* Footer Paragraphs */
+#footer p {
+    font-family: Georgia, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    color: #868686;
 }

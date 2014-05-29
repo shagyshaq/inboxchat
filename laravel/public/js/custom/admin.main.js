@@ -74,8 +74,18 @@ $(document).ready(function() {
 			}
 		}
     });
-$('#validate-page').validate({
+$('#validate-register').validate({
         rules:{
+            username: "required",
+            password: {
+    			required: true,
+    			minlength: 8
+    		},
+            email: {
+ 			required: true,
+ 			email: true
+ 			}
+		},
             title: {required:true,minlength:3},
             title_alias: {required:true,minlength:3,maxlength:10},
             intro_text: {required:true},

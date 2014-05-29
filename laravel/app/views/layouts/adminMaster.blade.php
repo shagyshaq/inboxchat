@@ -20,11 +20,7 @@
         <![endif]-->
     </head>
     
-        @include('layouts/partials/adminHeader')
-        
-         @include('layouts/partials/siteFooter')
-       
-      
+        @include('layouts/partials/adminHeader')     
         
          <div class="container">
              @if (Auth::check())
@@ -40,8 +36,6 @@
                          <li class="li "role="presentation"><a  tabindex="-1" href="{{ url('menus/list') }}">User List</a></li>
                         
                          <li class="li" role="presentation"><a  tabindex="-1" href="{{ url('messages/count') }}">Dashboard</a></li>
-                         <li class="li" role="presentation"><a  tabindex="-1" href="{{ url('widgets/create') }}">CREATE WIDGET</a></li>
-                         <li class="li" role="presentation"><a  tabindex="-1" href="{{ url('widgets/list') }}">LIST WIDGET</a></li>
                          
                          @yield('users')
                      </ul>
@@ -58,7 +52,9 @@
              @else  @yield('content')
              @endif
          </div> 
-      
+        
+         @include('layouts/partials/siteFooter')
+        
         <script>
             var baseUrl = "{{ URL::to('') }}";
         </script>
