@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/layouts/partials/adminHeader.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/models/User.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/viewmessage.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/login.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/models/Message.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/inboxmessages.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/edituser.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/config/app.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/public/js/custom/site.main.js</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/layouts/adminMaster.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/public/css/custom/admin.main.css</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/layouts/partials/siteFooter.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/dashboard.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/hello.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/layouts/siteMaster.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/views/sentmessages.blade.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/app/routes.php</file>
+            <file>file:/C:/wamp/www/inboxchat/laravel/public/css/custom/site.main.css</file>
+        </group>
+    </open-files>
+</project-private>
